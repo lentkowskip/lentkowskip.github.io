@@ -101,6 +101,69 @@
   .subtitle { font-size: 14px; color: var(--text-secondary); margin: 0; }
   .status-badge { font-size: 13px; padding: 4px 10px; border-radius: var(--radius-md); font-weight: 500; }
   .status-elevated { background: var(--danger-bg); color: var(--danger-text); }
+  /* "About this framework" collapsible README at top of Overview tab */
+  .framework-readme {
+    margin: 0 0 1.25rem;
+    padding: 10px 14px;
+    border-left: 3px solid var(--accent, #2563eb);
+    background: var(--info-bg, var(--surface-secondary));
+    border-radius: var(--radius-md);
+  }
+  .framework-readme summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-primary);
+    user-select: none;
+  }
+  .framework-readme summary::-webkit-details-marker { display: none; }
+  .framework-readme summary::before {
+    content: "\25B8"; /* right-pointing triangle */
+    display: inline-block;
+    width: 14px;
+    color: var(--accent, #2563eb);
+  }
+  .framework-readme[open] summary::before {
+    content: "\25BE"; /* down-pointing triangle */
+  }
+  .framework-readme summary .readme-hint {
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-left: 8px;
+    font-size: 13px;
+  }
+  .framework-readme-body {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 0.5px solid var(--border);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .framework-readme-body h4 {
+    font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-primary);
+    margin: 16px 0 6px;
+  }
+  .framework-readme-body h4:first-child { margin-top: 0; }
+  .framework-readme-body p { margin: 0 0 10px; }
+  .framework-readme-body ul {
+    margin: 0 0 10px; padding-left: 20px;
+  }
+  .framework-readme-body li { margin: 3px 0; }
+  .framework-readme-body strong { color: var(--text-primary); font-weight: 500; }
+  .framework-readme-body em.readme-gotcha {
+    font-style: normal; font-weight: 500;
+    color: var(--text-primary);
+  }
+  .framework-readme-body code {
+    background: var(--surface);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  }
   .metric-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px; margin-bottom: 1.5rem;
@@ -973,6 +1036,25 @@
 
 <!-- TAB: Overview - metric cards + morning commentary + summary boxes -->
 <div class="tab-panel" id="overview">
+  <details class="framework-readme">
+    <summary>About this framework <span class="readme-hint">orientation for new readers &middot; click to expand</span></summary>
+    <div class="framework-readme-body">
+      <p>This dashboard tracks physical oil market indicators to test macro narratives against actual barrel flows. The thesis: financial press lags physical signals by days to weeks, so during a Mideast disruption you can read recession-transmission risk from tanker rates, war-risk insurance premiums, regional spreads, and refinery utilization before futures or equity desks catch up.</p>
+      <h4>Where to look</h4>
+      <ul>
+        <li><strong>Overview</strong> &mdash; current headline status and morning commentary.</li>
+        <li><strong>Indicators</strong> &mdash; full table of 42 physical and financial signals with weekly history. Click any row to load its chart.</li>
+        <li><strong>Disruption signals</strong> &mdash; physical-vs-paper divergence and substitution-engagement composites; are tanker reroutes absorbing the shock?</li>
+        <li><strong>Transmission</strong> &mdash; Brent &times; Substitution regime matrix conditioning the equity-transmission and recession reads.</li>
+        <li><strong>Reference</strong> &mdash; thresholds, sources, framework changelog.</li>
+      </ul>
+      <h4>Two things that will confuse you in three months</h4>
+      <p><em class="readme-gotcha">Substitution-polarity flip.</em> Indicators tagged &ldquo;Substitution&rdquo; (TD15 VLCC WAF-China, ESPO premium, US crude exports) are reverse-polarity. Higher = green = engaged channel = absorbing the shock. They look like crisis readings against the default Normal/Elevated/Crisis ladder, but a high reading means substitution is working. Read them through the regime matrix, not the standalone pill.</p>
+      <p><em class="readme-gotcha">Dubai-Brent two-mode convention.</em> The spread sign was flipped on Apr 17, 2026. Negative spread = Atlantic-basin tightness (2022 Russia-Ukraine signature). Positive spread = Mideast trapped-barrel scarcity (current Hormuz signature). Two-sided thresholds capture both modes &mdash; don&rsquo;t pattern-match a positive print to the 2022 setup.</p>
+      <h4>Calibration</h4>
+      <p>Thresholds for Normal/Elevated/Crisis live in <code>oil_tail_risk_log.xlsx</code>. Recession and transmission probabilities are calibrated against 1973-74, 1979-80, 1990-91, 2008, 2022 oil-shock analogues plus 2014-16 and 2022-23 as no-shock counterfactuals. Not backtested &mdash; treat probabilities as risk-asymmetry framing, not forecasts.</p>
+    </div>
+  </details>
   <section class="metric-grid">
   <div class="metric-card"><p class="metric-label">Brent M1 (paper)</p><p class="metric-value">$116.53/bbl</p><p class="metric-note">Brent +4.74% DoD per Trading Economics; +$2 intraday from AM. 9th straight up session, highest since June 2022. Triple PM catalyst: WPSR confirmed sharp tightening (commercial -6.2M, gasoline -8.47M, SPR -7.1M to 397.9M = first print below 400M); FOMC delivered hawkish hold with 4 dissents (first since 1992); Hormuz transits collapsed back to 6/day from 13 — yesterday's re-engagement was a head fake. WTI ~$103-106 (+~7% DoD).</p></div>
   <div class="metric-card"><p class="metric-label">Hormuz transits</p><p class="metric-value">~6 ships (24h)</p><p class="metric-note">Apr 29 print 6 ships in 24h per IBTimes / real-time tracking — DOWN from 13 Apr 28. Yesterday's 13-print and Japanese-owned VLCC laden transit did NOT seed sustained re-engagement. Closure tightens back; closure now in week 9. Polymarket 99.7% against return-to-normal by Apr 30 (1 day away) safe. UAE OPEC exit effective Friday May 1 won't change strait closure binding constraint.</p></div>
