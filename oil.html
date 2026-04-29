@@ -733,6 +733,38 @@
     content: " (current)";
     font-size: 11px; color: var(--accent, #2563eb); font-weight: 500;
   }
+  /* Historical anchors below the regime matrix — context for cell labels */
+  .regime-anchors {
+    margin: 12px 0 6px;
+    padding: 10px 14px;
+    background: var(--surface-secondary);
+    border-radius: var(--radius-md);
+  }
+  .regime-anchors h4 {
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin: 0 0 8px;
+  }
+  .regime-anchors ul {
+    margin: 0; padding-left: 18px;
+    font-size: 13px; line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .regime-anchors li { margin: 4px 0; }
+  .regime-anchors li strong { color: var(--text-primary); font-weight: 500; }
+  .regime-anchors .anchor-cell {
+    display: inline-block;
+    font-size: 11px; font-weight: 500;
+    padding: 1px 6px; margin: 0 2px;
+    background: var(--surface); color: var(--text-primary);
+    border: 0.5px solid var(--border);
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .regime-anchors .anchor-cell.warn { color: var(--warning-text, #92400e); border-color: var(--warning-text, #92400e); }
+  .regime-anchors .anchor-cell.good { color: var(--success-text, #065f46); border-color: var(--success-text, #065f46); }
+  .regime-anchors .anchor-cell.neutral { color: var(--text-tertiary); }
   .tp-section {
     margin-top: 1.25rem; padding-top: 1rem;
     border-top: 0.5px solid var(--border);
@@ -1053,6 +1085,16 @@
 <td class="regime-cell regime-cell-good"><div class="regime-cell-label">absorption path</div><div class="regime-cell-note">1990-91 Kuwait-invasion absorption</div></td>
 </tr>
 </tbody></table>
+<div class="regime-anchors">
+  <h4>Historical anchors</h4>
+  <ul>
+    <li><strong>1973-74 OPEC embargo</strong> &mdash; Arab states cut ~15% of US supply on political grounds. No Atlantic-to-Asia rerouting infrastructure existed; allies were embargoed too; the SPR didn&rsquo;t exist yet. <span class="anchor-cell warn">Brent Crisis &times; Sub Idle &rarr; stagflation path</span> Brent quadrupled, S&amp;P -25% by week 12, recession Nov 73 &ndash; Mar 75.</li>
+    <li><strong>1979-80 Iranian Revolution</strong> &mdash; Iranian production collapsed from 5.5M to 0.5M bpd. Saudi swing capacity didn&rsquo;t replace within timeframe; tanker reroute trade not yet built. <span class="anchor-cell warn">Brent Crisis &times; Sub Idle &rarr; stagflation path</span> (canonical). No equity drawdown during the shock itself; Volcker-induced 1980 recession + 1981-82 double-dip followed.</li>
+    <li><strong>1990-91 Iraq invasion of Kuwait</strong> &mdash; ~4M bpd Iraqi+Kuwaiti volumes off market overnight. Saudi swing capacity activated within weeks; coordinated IEA strategic-reserve release. <span class="anchor-cell good">Brent Crisis &times; Sub Engaged &rarr; absorption path</span> (canonical). Brent $17&rarr;$35-40 then reversed sharply on Desert Storm. Recession was short and shallow, driven by pre-existing bank weakness more than oil.</li>
+    <li><strong>2014-16 oil collapse</strong> &mdash; Inverted shock: US shale flooded supply, OPEC declined to cut, Brent fell 75% over 18 months. <span class="anchor-cell neutral">Out of matrix frame</span> Useful counterfactual: oil moves alone don&rsquo;t cause US recession when consumer balance sheets, banks, and labor markets are healthy.</li>
+    <li><strong>2022 Russia-Ukraine</strong> &mdash; Russian crude self-sanctioned, ~3M bpd flow disruption. Russian barrels rerouted to India and China; Atlantic basin (US Gulf, WAF, Norwegian) flowed to Europe; coordinated SPR releases. <span class="anchor-cell good">Brent Elevated &times; Sub Engaged &rarr; absorbed shock</span> (canonical). Brent held $90-120 for months; equity initial -10% recovered; Fed-tightening was the actual transmission ~7 months later.</li>
+  </ul>
+</div>
 <details class="recession-explainer"><summary>For readers new to this <span class="ex-hint">how the matrix conditions the transmission read</span></summary><div class="explainer-body"><p><span class="ex-label">What this shows</span>The macro transmission of an oil shock is conditional, not monotonic. A high Brent print can resolve into very different macro paths depending on whether the substitution channels (Atlantic-to-Asia tanker reroute, US export ceiling, Russian Pacific crude bid up) are absorbing the supply gap. This 3x3 matrix is the joint state of Brent regime and substitution regime, mapped to the closest historical analogue.</p><p><span class="ex-label">How to read it</span>The highlighted cell is the current joint state. Read the transmission and recession panels below as conditional on this cell. <strong>Brent Crisis x Sub Engaged</strong> = 1990-91 absorption (price spike priced and rerouted; recession risk lower). <strong>Brent Crisis x Sub Idle</strong> = 1979 stagflation path (price priced, channels blocked, transmission compounds). The cells in between are intermediate. The substitution composite is the lever that moves you between these worlds.</p><p><span class="ex-label">Why it matters for the framework</span>Without this matrix the dashboard reads as if higher TD15 / ESPO / WAF-China readings are stress signals (because the column header defaults to Baseline / Elevated / Crisis). They are not. They are activation signals for the shock-absorption channel, and they only have a stress reading when paired with Brent regime. The matrix makes that conditionality explicit.</p></div></details>
 </div>
 <div class="divergence-panel">
